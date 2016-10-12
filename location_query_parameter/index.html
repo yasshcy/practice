@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>URLのパラメータによる出し分け</title>
+  <script src="http://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+  <script src="./js/view.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="screen">
+    .viewtype01,
+    .viewtype02,
+    .default{
+      display: none;
+    }
+    .viewtype01{
+      color: red;
+    }
+    .viewtype02{
+      color: blue;
+    }
+    .default{
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <section>
+    <h2>test parameter</h2>
+    <ul>
+      <li>
+        <a href="index.html">
+          index.html
+        </a>
+      </li>
+      <li>
+        <a href="index.html?viewtype=default">
+          index.html?viewtype=default
+        </a>
+      </li>
+      <li>
+        <a href="index.html?viewtype=viewtype01">
+          index.html?viewtype=viewtype01
+        </a>
+      </li>
+      <li>
+        <a href="index.html?viewtype=viewtype02">
+          index.html?viewtype=viewtype02
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="viewtype01">
+    <p>viewtype01</p>
+  </section>
+  <section class="viewtype02">
+    <p>viewtype02</p>
+  </section>
+  <section class="default">
+    <p>default</p>
+  </section>
+
+</div><!-- /.container -->
+
+</body>
+</html>
