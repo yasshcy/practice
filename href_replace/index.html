@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>リンク先を環境によって一部変更する</title>
+  <script src="http://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+  <script src="./js/view.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+
+<div class="container">
+
+  <section>
+    <h2>
+The domain of "https://dummy.com" and replace it with the "https://www.google.co.jp".</h2>
+    <ul>
+      <li>
+        <a href="https://dummy.com/#q=jQuery">
+          This href is "https://dummy.com/#q=jQuery"
+        </a>
+      </li>
+      <li>
+        <a href="https://dummy.com/#q=javascript">
+          This href is "https://dummy.com/#q=javascript"
+        </a>
+      </li>
+      <li>
+        <a href="http://search.yahoo.co.jp/search;_ylt=A2RA2D3fjhBYl2wAZkOJBtF7?p=jQuery&search.x=1&fr=top_ga1_sa&tid=top_ga1_sa&ei=UTF-8&aq=&oq=jquery&afs=">
+          This href is "http://search.yahoo.co.jp/search;_ylt=A2RA2D3fjhBYl2wAZkOJBtF7?p=jQuery&search.x=1&fr=top_ga1_sa&tid=top_ga1_sa&ei=UTF-8&aq=&oq=jquery&afs="
+        </a>
+      </li>
+      <li>
+        <a href="#ThisPage">
+          This href is "#ThisPage"
+        </a>
+      </li>
+    </ul>
+  </section>
+
+</div><!-- /.container -->
+
+</body>
+</html>
