@@ -1,0 +1,36 @@
+Sub 表をJSON形式に()
+    arrs = Cells(1, 1).CurrentRegion '1から行数まで、1から列数まで
+    len_row = UBound(arrs, 1) '行数
+    len_col = UBound(arrs, 2) '列数
+    ReDim heads(len_col - 1) '見出し、0から列数-1まで
+    ReDim recs(len_row - 2) 'レコード、0から行数-2まで
+    
+    'データの取得とJSONの生成
+    For c = 1 To len_col
+        '1行目の各セルを見出しとして取得。
+        heads(c - 1) = arrs(1, c)
+    Next c
+    For r = 2 To len_row
+        '2行目から最下行まで処理。
+        ReDim temps(len_col - 1) '0から列数-1まで
+        For c = 1 To len_col
+            '各行の各セルを取得し見出しと組み合わせる。
+            temps(c - 1) = vbTab & vbTab & Chr(34) & heads(c - 1) & Chr(34) & ":" & Chr(34) & arrs(r, c) & Chr(34)
+        Next c
+        recs(r - 2) = vbTab & "{" & vbCrLf & Join(temps, "," & vbCrLf) & vbCrLf & vbTab & "}"
+    Next r
+    json = "[" & vbCrLf & Join(recs, "," & vbCrLf) & vbCrLf & "]"
+    
+    'ファイルの出力
+    fnsave = Application.GetSaveAsFilename("output.json", "JSON(*.json),*.json")
+    If fnsave = False Then Exit Sub
+    With CreateObject("ADODB.Stream")
+        .Type = 2
+        .Charset = "utf-8"
+        .Open
+        .WriteText json, 1
+        .SaveToFile fnsave, 2
+        .Close
+    End With
+End Sub
+
