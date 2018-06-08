@@ -4,7 +4,6 @@ window.addEventListener('DOMContentLoaded', function () {
   var isPriceParse = parseInt( isPrice );
   Number( isPriceParse );
 
-
   var totalPrice = function ( price ) {
     // 税率
     var tax = 0.08;
@@ -14,10 +13,14 @@ window.addEventListener('DOMContentLoaded', function () {
     Number( isPriceParse );
     // 税率と月山
     total = isPriceParse + isPriceParse * tax;
-    return total;
+
+    // 3桁カンマ
+    var totalPrice = total.toString().replace(/(\d)(?=(\d{3})+$)/g , '$1,');
+    return totalPrice;
   }
 
   document.getElementById('total').textContent = totalPrice( isPrice );
+  document.getElementById('price').textContent = isPrice.toString().replace(/(\d)(?=(\d{3})+$)/g , '$1,');
 
 });
 
