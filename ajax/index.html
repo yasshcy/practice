@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ajax test</title>
+  <link rel="stylesheet" href="">
+</head>
+<body>
+  <h1>ajax test</h1>
+  <p>ここにテキストを表示する <span id="element1"></span> それが答え</p>
+  <p>外部ファイルから読み込んでいる <span id="element2"></span> ちゃんとできていれば</p>
+  <script type="text/javascript">
+
+    // オブジェクト作成
+    var dataFile = new XMLHttpRequest();
+
+    // 読み込んだファイルをのちのちオブジェクトとして格納する
+    var obj;
+
+    // 読み込んだデータを表示するDOMを取得する
+    var el1 = document.getElementById('element1');
+    var el2 = document.getElementById('element2');
+
+    // イベントハンドラ。読み込んだら動く
+    dataFile.onload = function(event) {
+
+      // XMLHttpRequest操作、通信が完了したら
+      if ( dataFile.readyState === 4 ) {
+
+        // そして読み込みが完了したら
+        if ( dataFile.status === 200 ) {
+
+          // 取得したファイルをjsonパースしてオブジェクトに変換
+          var obj = JSON.parse( dataFile.response );
+
+          console.log(dataFile.statusText);
+          el1.innerHTML = obj.data1;
+          el2.innerHTML = obj.data2;
+
+        } else {
+
+          console.log(dataFile.statusText);
+
+        }
+
+
+      }
+
+    }
+
+    // 読み込めないとき実行する
+    dataFile.onerror = function (event) {
+
+      // なんのタイプなのか
+      console.log(event.type);
+
+    };
+
+    // データのリクエストを送信する
+    dataFile.open('get', 'data.json', true);
+
+    // data typeは？ json / jsonp
+    XMLHttpRequest.responseType = 'json';
+    dataFile.send(null);
+
+  </script>
+</body>
+</html>
